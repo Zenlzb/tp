@@ -62,21 +62,21 @@ public class EditPersonCommandParser implements Parser<EditPersonCommand> {
         }
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
             if (argMultimap.getValue(PREFIX_PHONE).get().isEmpty()) {
-                editPersonDescriptor.setPhone(new Phone());
+                throw new ParseException(MESSAGE_ARGUMENT_EMPTY);
             } else {
                 editPersonDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
             }
         }
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
             if (argMultimap.getValue(PREFIX_EMAIL).get().isEmpty()) {
-                editPersonDescriptor.setEmail(new Email());
+                throw new ParseException(MESSAGE_ARGUMENT_EMPTY);
             } else {
                 editPersonDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
             }
         }
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
             if (argMultimap.getValue(PREFIX_ADDRESS).get().isEmpty()) {
-                editPersonDescriptor.setAddress(new Address());
+                throw new ParseException(MESSAGE_ARGUMENT_EMPTY);
             } else {
                 editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
             }
