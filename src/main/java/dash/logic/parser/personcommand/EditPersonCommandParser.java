@@ -22,9 +22,6 @@ import dash.logic.parser.ArgumentTokenizer;
 import dash.logic.parser.Parser;
 import dash.logic.parser.ParserUtil;
 import dash.logic.parser.exceptions.ParseException;
-import dash.model.person.Address;
-import dash.model.person.Email;
-import dash.model.person.Phone;
 import dash.model.tag.Tag;
 
 /**
