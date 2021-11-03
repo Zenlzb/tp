@@ -6,7 +6,6 @@ import dash.commons.core.Messages;
 import dash.logic.commands.CommandTestUtil;
 import dash.logic.commands.personcommand.AddPersonCommand;
 import dash.logic.parser.CommandParserTestUtil;
-import dash.model.person.Address;
 import dash.model.person.Email;
 import dash.model.person.Name;
 import dash.model.person.Person;
@@ -113,13 +112,6 @@ public class AddPersonCommandParserTest {
                         + CommandTestUtil.TAG_DESC_HUSBAND + CommandTestUtil.TAG_DESC_FRIEND,
                 Email.MESSAGE_CONSTRAINTS);
 
-        // invalid address
-        CommandParserTestUtil.assertParseFailure(parser,
-                CommandTestUtil.NAME_DESC_BOB + CommandTestUtil.PHONE_DESC_BOB
-                        + CommandTestUtil.EMAIL_DESC_BOB + CommandTestUtil.INVALID_ADDRESS_DESC
-                        + CommandTestUtil.TAG_DESC_HUSBAND + CommandTestUtil.TAG_DESC_FRIEND,
-                Address.MESSAGE_CONSTRAINTS);
-
         // invalid tag
         CommandParserTestUtil.assertParseFailure(parser,
                 CommandTestUtil.NAME_DESC_BOB + CommandTestUtil.PHONE_DESC_BOB
@@ -129,7 +121,7 @@ public class AddPersonCommandParserTest {
         // two invalid values, only first invalid value reported
         CommandParserTestUtil.assertParseFailure(parser,
                 CommandTestUtil.INVALID_NAME_DESC + CommandTestUtil.PHONE_DESC_BOB
-                        + CommandTestUtil.EMAIL_DESC_BOB + CommandTestUtil.INVALID_ADDRESS_DESC,
+                        + CommandTestUtil.INVALID_EMAIL_DESC + CommandTestUtil.ADDRESS_DESC_BOB,
                 Name.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble

@@ -8,7 +8,6 @@ import dash.logic.commands.CommandTestUtil;
 import dash.logic.commands.personcommand.EditPersonCommand;
 import dash.logic.parser.CliSyntax;
 import dash.logic.parser.CommandParserTestUtil;
-import dash.model.person.Address;
 import dash.model.person.Email;
 import dash.model.person.Name;
 import dash.model.person.Phone;
@@ -60,8 +59,6 @@ public class EditPersonCommandParserTest {
                 Phone.MESSAGE_CONSTRAINTS); // invalid phone
         CommandParserTestUtil.assertParseFailure(parser, "1" + CommandTestUtil.INVALID_EMAIL_DESC,
                 Email.MESSAGE_CONSTRAINTS); // invalid email
-        CommandParserTestUtil.assertParseFailure(parser, "1" + CommandTestUtil.INVALID_ADDRESS_DESC,
-                Address.MESSAGE_CONSTRAINTS); // invalid address
         CommandParserTestUtil.assertParseFailure(parser, "1" + CommandTestUtil.INVALID_TAG_DESC,
                 Tag.MESSAGE_CONSTRAINTS); // invalid tag
 

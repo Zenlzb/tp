@@ -45,10 +45,17 @@ public class Email {
         value = email;
     }
 
+    public Email() {
+        value = "";
+    }
+
     /**
      * Returns if a given string is a valid email.
      */
     public static boolean isValidEmail(String test) {
+        if (test.trim().equals("")) {
+            return true;
+        }
         return test.matches(VALIDATION_REGEX);
     }
 

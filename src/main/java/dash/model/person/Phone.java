@@ -27,10 +27,17 @@ public class Phone {
         value = phone;
     }
 
+    public Phone() {
+        value = "";
+    }
+
     /**
      * Returns true if a given string is a valid phone number.
      */
     public static boolean isValidPhone(String test) {
+        if (test.trim().equals("")) {
+            return true;
+        }
         return test.matches(VALIDATION_REGEX);
     }
 

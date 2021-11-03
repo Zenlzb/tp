@@ -22,6 +22,9 @@ import dash.logic.parser.ArgumentTokenizer;
 import dash.logic.parser.Parser;
 import dash.logic.parser.ParserUtil;
 import dash.logic.parser.exceptions.ParseException;
+import dash.model.person.Address;
+import dash.model.person.Email;
+import dash.model.person.Phone;
 import dash.model.tag.Tag;
 
 /**
@@ -59,18 +62,24 @@ public class EditPersonCommandParser implements Parser<EditPersonCommand> {
         }
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
             if (argMultimap.getValue(PREFIX_PHONE).get().isEmpty()) {
-                throw new ParseException(MESSAGE_ARGUMENT_EMPTY);
+                editPersonDescriptor.setPhone(new Phone());
+            } else {
+                editPersonDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
             }
-            editPersonDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
         }
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
             if (argMultimap.getValue(PREFIX_EMAIL).get().isEmpty()) {
-                throw new ParseException(MESSAGE_ARGUMENT_EMPTY);
+                editPersonDescriptor.setEmail(new Email());
+            } else {
+                editPersonDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
             }
-            editPersonDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
         }
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
-            editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
+            if (argMultimap.getValue(PREFIX_ADDRESS).get().isEmpty()) {
+                editPersonDescriptor.setAddress(new Address());
+            } else {
+                editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
+            }
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 
